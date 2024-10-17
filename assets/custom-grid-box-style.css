@@ -1,0 +1,209 @@
+ul.custom-grid-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: calc(100% + 36px);
+  margin-left: -13px;
+  flex-wrap: wrap;
+  height: 300px;
+}
+
+li.custom-grid-item {
+  list-style-type: none;
+  width: 25%;
+  padding: 0 13px;
+}
+
+a.custom-grid-box {
+  display: block;
+  text-decoration: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.2) inset;
+  border-radius: 20px;
+}
+
+.custom-grid-icon img {
+  width: auto;
+}
+
+.custom-grid-title h4 {
+  font-size: 38px;
+  line-height: 57px;
+  letter-spacing: -2px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.custom-heading h2 {
+  font-size: 54px;
+  font-weight: 600;
+  line-height: 81px;
+  margin: 0;
+}
+
+.custom-heading {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.custom-grid-title {
+  padding: 0 12px 18px 12px;
+}
+
+.custom-grid-icon .no-hover-img {
+  width: auto;
+  padding: 18px 12px;
+  height: 117px;
+}
+
+.custom-grid-icon-main {
+  position: relative;
+  overflow: hidden;
+  max-height: 100px;
+  transition: all 0.4s ease;
+}
+
+.custom-grid-icon .no-hover-img {
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease;
+}
+
+.custom-grid-icon-hover .hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease, max-height 0.8s ease;
+}
+
+.custom-grid-box:hover .custom-grid-icon .no-hover-img {
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+}
+
+.custom-grid-box:hover .custom-grid-icon-hover .hover-img {
+  opacity: 1;
+  visibility: visible;
+  max-height: 200px;
+}
+
+.custom-grid-box:hover .custom-grid-icon-main {
+  max-height: 200px;
+}
+
+.custom-grid-icon-hover img {
+  border-radius: 20px;
+}
+
+.bottom-content p {
+  font-size: 26px;
+  line-height: 39px;
+  font-weight: 300;
+  color: #000;
+  margin: 0 0 45px 0;
+}
+
+.bottom-content {
+  text-align: center;
+}
+
+.btn-box span {
+  font-size: 24px;
+  font-weight: 600;
+  min-width: 332px;
+  display: inline-block;
+  min-height: 60px;
+  border: 2px solid #30ace2;
+  border-radius: 36px;
+  line-height: 60px;
+  color: #30ace2;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.25) inset;
+  transition: all ease .4s;
+}
+
+.btn-box span+span {
+  margin-left: 50px;
+}
+
+.btn-box span:hover {
+  color: #fff;
+  background: #30acef;
+}
+
+@media(max-width:1240px) {
+  .custom-grid-title h4 {
+    font-size: 30px;
+    line-height: 46px;
+  }
+}
+
+@media(max-width:991px) {
+  li.custom-grid-item {
+    width: 50%;
+    margin-bottom: 36px;
+  }
+
+  .custom-grid-container ul.custom-grid-list {
+    height: 100%;
+  }
+
+  .custom-grid-container .btn-box span+span {
+    margin-left: 0px;
+  }
+
+  .custom-grid-container .btn-box span {
+    margin-bottom: 20px;
+  }
+
+  .custom-grid-container .bottom-content p {
+    margin: 0 0 30px 0;
+  }
+}
+
+@media(max-width:767px) {
+  .custom-grid-container .custom-heading h2 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .custom-grid-container .custom-heading {
+    margin-bottom: 30px;
+  }
+
+  .custom-grid-container li.custom-grid-item {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .custom-grid-container .custom-grid-list {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .custom-grid-container .custom-grid-title h4 {
+    font-size: 24px;
+    line-height: 46px;
+    letter-spacing: 0;
+  }
+
+  .custom-grid-container a.custom-grid-box {
+    text-align: center;
+  }
+
+  .custom-grid-container .bottom-content p {
+    font-size: 20px;
+    line-height: 30px;
+
+  }
+
+  .custom-grid-container .btn-box span {
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 100%;
+  }

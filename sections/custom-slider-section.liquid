@@ -1,0 +1,149 @@
+ {{ 'custom-slider-style.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+   
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+<div class="custom-slider-container section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="heading">
+      <h2>{{ section.settings.text }}</h2>
+      {{ section.settings.content }}
+    </div>
+    <ul class="custom-slider-list">
+      {% for block in section.blocks %}
+      <li class="custom-slider-item">
+        <a class="custom-slider-box" href="{{ block.settings.link }}">
+          <div class="custom-slider-content">
+            <h4>{{ block.settings.content }}</h4>
+            {% if block.settings.disc != blank %}
+            {{ block.settings.disc }}
+            {% endif %}
+          </div>
+          <div class="custom-slider-img">
+            {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url:'master' }}" alt="{{ block.settings.image }}" height="100%" width="100%"/>
+            {% endif %}
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="custom-btn">
+      <a class="more-btn" href="#">
+      Know More
+      </a>
+    </div>
+  </div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+  $('.custom-slider-list').slick({
+    centerMode: true,   
+    slidesToShow: 3,       
+    dots: false,
+    arrows: false,
+    swipe: true,
+    infinite: true,
+    swipeToSlide: true,
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 768,   
+        settings: {
+          slidesToShow: 1,   
+          centerMode: true,   
+          centerPadding: '20px',
+        }
+      }
+    ]
+  });
+</script>
+{% schema %}
+{
+"name": "Custom Slider Section",
+"settings": [
+   {
+          "type": "header",
+          "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 36
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Heading"
+        },
+   {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+],
+  "blocks": [
+     {
+       "name": "slider",
+       "type": "Slider",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+          {
+           "type": "text",
+           "id": "content",
+           "label": "Title"
+         },
+         {
+           "type": "richtext",
+           "id": "disc",
+           "label": "Content"
+         },
+         {
+           "type": "url",
+           "id": "link",
+           "label": "Link"
+         }
+       ]
+     }
+  ],
+"presets": [
+{
+"name": "Custom Slider Section",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}

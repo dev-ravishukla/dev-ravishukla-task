@@ -1,0 +1,139 @@
+ {{ 'custom-grid-box-style.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+   
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+<div class="custom-grid-container section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="custom-heading">
+      <h2>{{ section.settings.text }}</h2>
+    </div>
+    <ul class="custom-grid-list">
+      {% for block in section.blocks %}
+      <li class="custom-grid-item">
+        <a class="custom-grid-box" href="{{ block.settings.link }}">
+          <div class="custom-grid-icon-main">
+            <div class="custom-grid-icon">
+              {% if block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | img_url:"master" }}" alt="{{ block.settings.icon }}" height="100%" width="100%" class="no-hover-img"/> 
+              {% endif %}
+            </div>
+            <div class="custom-grid-icon-hover">
+              {% if block.settings.hover-icon != blank %}
+              <img src="{{ block.settings.hover-icon | img_url:"master" }}" alt="{{ block.settings.hover-icon }}" height="100%" width="100%" class="hover-img"/> 
+              {% endif %}
+            </div>
+          </div>
+          <div class="custom-grid-title">
+            <h4> {{ block.settings.content }}</h4>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="bottom-content">
+      {{ section.settings.rich }}
+      <div class="btn-box">
+        <span class="btn1">{{ section.settings.btn1 }}</span>
+        <span class="btn2">{{ section.settings.btn2 }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "Custom Grid Box",
+"settings": [
+   {
+          "type": "header",
+          "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 36
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Heading"
+        },
+      {
+          "type": "richtext",
+          "id": "rich",
+          "label": "Content"
+        },
+      {
+          "type": "text",
+          "id": "btn1",
+          "label": "Button Text"
+        },
+      {
+          "type": "text",
+          "id": "btn2",
+          "label": "Button Text"
+        },
+  
+],
+   "blocks": [
+     {
+       "name": "image",
+       "type": "image",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "icon",
+           "label": "Icon"
+         },
+         {
+           "type": "image_picker",
+           "id": "hover-icon",
+           "label": "Hover Image"
+         }
+         ,
+          {
+           "type": "text",
+           "id": "content",
+           "label": "Title"
+         },
+         {
+           "type": "url",
+           "id": "link",
+           "label": "Link"
+         }
+       ]
+     }
+  ],
+"presets": [
+{
+"name": "Custom Grid Box",
+"category": "ADVANCED LAYOUT"
+}
+]
+}
+{% endschema %}

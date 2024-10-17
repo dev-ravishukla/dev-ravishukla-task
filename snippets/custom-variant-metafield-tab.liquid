@@ -1,0 +1,24 @@
+<div class="custom-variant-metafield-decsription">
+  <div class="tab-container">
+    <div class="tab-menu">
+      <ul>
+        <li><a href="#" class="tab-a active-a" data-id="tab1">Description</a></li>
+        <li><a href="#" class="tab-a" data-id="tab2">Direction</a></li>
+        <li><a href="#" class="tab-a" data-id="tab3">Faq</a></li>
+      </ul>
+    </div>
+    <div  class="tab tab-active" data-id="tab1">
+      {% for variant in product.variants %}
+      <div class="custom-variant-description" data-variant-id="{{ variant.id }}" style="display:none;">
+        {{ variant.metafields.custom.variant_description | metafield_tag }}
+      </div>
+      {% endfor %}
+    </div>
+    <div  class="tab " data-id="tab2">
+      <h2>Direction</h2>
+    </div>
+    <div  class="tab " data-id="tab3">
+      <h2>Faq</h2>
+    </div>
+  </div>
+</div>
